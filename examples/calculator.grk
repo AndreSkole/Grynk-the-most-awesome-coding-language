@@ -1,5 +1,5 @@
-# Grynk Pro Calculator 🧮
-gx.banner("PRO CALCULATOR", "blue")
+# Grynk Stunning Calculator 💎
+gx.banner("STUNNING CALC", "magenta")
 
 # 1. State
 mut current = ""
@@ -7,10 +7,15 @@ mut last_op = ""
 mut last_val = 0
 
 # 2. Window Setup
-let win = gx.window("Grynk Calculator 1.2", 300, 450)
+# Themes: "blue", "green", "dark-blue", "sweet-kind"
+let win = gx.window("Grynk Premium Calc", 320, 480, "dark-blue")
 
-# Display Label (Big and bold)
-let display = gx.label("0")
+# Display Label (Premium Glass Look)
+let display = gx.label("0", null, {
+    fg: "#ffffff",
+    font: ("Inter", 40, "bold"),
+    height: 100
+})
 
 # 3. Helper Functions
 fn update(val) {
@@ -26,7 +31,7 @@ fn set_op(op) {
     mut last_val = num(current)
     mut last_op = op
     mut current = ""
-    display.set("{op}")
+    display.set(op)
 }
 
 fn calculate() {
@@ -52,29 +57,38 @@ fn clear() {
     display.set("0")
 }
 
-# 4. Building the Grid
-# Row 1: 7 8 9 /
-gx.button("7", fn() { update(7) }, 1)
-gx.button("8", fn() { update(8) }, 1)
-gx.button("9", fn() { update(9) }, 1)
-gx.button("/", fn() { set_op("/") }, 1)
+# 4. Building the UI with Premium Styles
+let num_style = { bg: "#333333", hover: "#444444", radius: 15, width: 65, height: 60 }
+let op_style  = { bg: "#FF9500", hover: "#FFB347", radius: 15, width: 65, height: 60 }
+let eq_style  = { bg: "#28A745", hover: "#34CE57", radius: 15, width: 65, height: 60 }
+let cl_style  = { bg: "#DC3545", hover: "#E4606D", radius: 15, width: 65, height: 60 }
 
-# Row 2: 4 5 6 *
-gx.button("4", fn() { update(4) }, 2)
-gx.button("5", fn() { update(5) }, 2)
-gx.button("6", fn() { update(6) }, 2)
-gx.button("*", fn() { set_op("*") }, 2)
+# Row 1
+gx.button("7", fn() { update(7) }, 1, num_style)
+gx.button("8", fn() { update(8) }, 1, num_style)
+gx.button("9", fn() { update(9) }, 1, num_style)
+gx.button("/", fn() { set_op("/") }, 1, op_style)
 
-# Row 3: 1 2 3 -
-gx.button("1", fn() { update(1) }, 3)
-gx.button("2", fn() { update(2) }, 3)
-gx.button("3", fn() { update(3) }, 3)
-gx.button("-", fn() { set_op("-") }, 3)
+# Row 2
+gx.button("4", fn() { update(4) }, 2, num_style)
+gx.button("5", fn() { update(5) }, 2, num_style)
+gx.button("6", fn() { update(6) }, 2, num_style)
+gx.button("*", fn() { set_op("*") }, 2, op_style)
 
-# Row 4: C 0 = +
-gx.button("C", clear, 4)
-gx.button("0", fn() { update(0) }, 4)
-gx.button("=", calculate, 4)
-gx.button("+", fn() { set_op("+") }, 4)
+# Row 3
+gx.button("1", fn() { update(1) }, 3, num_style)
+gx.button("2", fn() { update(2) }, 3, num_style)
+gx.button("3", fn() { update(3) }, 3, num_style)
+gx.button("-", fn() { set_op("-") }, 3, op_style)
+
+# Row 4
+gx.button("C", clear, 4, cl_style)
+gx.button("0", fn() { update(0) }, 4, num_style)
+let eq_btn = gx.button("=", calculate, 4, eq_style)
+gx.button("+", fn() { set_op("+") }, 4, op_style)
+
+# Add a little "WOW" animation
+# When the window opens, the equals button grows slightly
+eq_btn.animate("width", 80, 800)
 
 gx.gui_run()

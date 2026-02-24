@@ -131,21 +131,23 @@ class GxGUI:
         self.widgets = []
         self._ctk = _try_import('customtkinter')
 
-    def add_button(self, text, callback, row=None):
+    def add_button(self, text, callback, row=None, style=None):
         target = self._get_target(row)
         if self._ctk:
             btn = self._ctk.CTkButton(target, text=unwrap(text), command=lambda: self._trigger(callback), width=60)
+            self._apply_style(btn, style)
         else:
             import tkinter as tk
             btn = tk.Button(target, text=unwrap(text), command=lambda: self._trigger(callback))
         btn.pack(side="left" if row is not None else "top", pady=5, padx=5)
         self.widgets.append(btn)
-        return btn
+        return GxGUIWidget(btn)
 
-    def add_label(self, text, row=None):
+    def add_label(self, text, row=None, style=None):
         target = self._get_target(row)
         if self._ctk:
             lbl = self._ctk.CTkLabel(target, text=unwrap(text))
+            self._apply_style(lbl, style)
         else:
             import tkinter as tk
             lbl = tk.Label(target, text=unwrap(text))
@@ -153,16 +155,43 @@ class GxGUI:
         self.widgets.append(lbl)
         return GxGUIWidget(lbl)
 
-    def add_entry(self, placeholder="", row=None):
+    def add_entry(self, placeholder="", row=None, style=None):
         target = self._get_target(row)
         if self._ctk:
             entry = self._ctk.CTkEntry(target, placeholder_text=unwrap(placeholder))
+            self._apply_style(entry, style)
         else:
             import tkinter as tk
             entry = tk.Entry(target)
         entry.pack(side="left" if row is not None else "top", fill="x" if row is None else "none", expand=True, pady=5, padx=5)
         self.widgets.append(entry)
         return GxGUIWidget(entry)
+
+    def _apply_style(self, widget, style):
+        if not style or not self._ctk: return
+        s = unwrap(style)
+        if not isinstance(s, dict): return
+        
+        mapping = {
+            'bg': 'fg_color',
+            'fg': 'text_color',
+            'hover': 'hover_color',
+            'radius': 'corner_radius',
+            'width': 'width',
+            'height': 'height',
+            'font': 'font'
+        }
+        
+        conf = {}
+        for k, v in s.items():
+            if k in mapping:
+                conf[mapping[k]] = unwrap(v)
+        
+        if conf:
+            try:
+                widget.configure(**conf)
+            except:
+                pass
 
     def _get_target(self, row_id):
         if row_id is None:
@@ -204,7 +233,9 @@ class GxGUIWidget:
         methods = {
             "set": self._set_text,
             "clear": self._clear,
-            "focus": lambda: (self.widget.focus(), None)[1]
+            "focus": lambda: (self.widget.focus(), None)[1],
+            "style": self._style,
+            "animate": self._animate
         }
         if name in methods: return methods[name]
         raise GrynkRuntimeError(f"Widget has no attribute '{name}'")
@@ -223,6 +254,40 @@ class GxGUIWidget:
             self.widget.delete(0, 'end')
         return None
 
+    def _style(self, style):
+        # Access GxGUI to apply style
+        global _GX_INSTANCE
+        if _GX_INSTANCE and _GX_INSTANCE._gui:
+            _GX_INSTANCE._gui._apply_style(self.widget, style)
+        return None
+
+    def _animate(self, prop, target, ms=500):
+        """Simple property animation: moves a value towards target over ms."""
+        prop = unwrap(prop)
+        target = unwrap(target)
+        ms = int(unwrap(ms))
+        
+        mapping = {'width': 'width', 'height': 'height', 'radius': 'corner_radius'}
+        tk_prop = mapping.get(prop)
+        if not tk_prop or not hasattr(self.widget, 'cget'): return None
+        
+        try:
+            start = float(self.widget.cget(tk_prop))
+            diff = float(target) - start
+            steps = 20
+            interval = ms // steps
+            
+            def _step(i):
+                if i > steps: return
+                val = start + (diff * (i / steps))
+                self.widget.configure(**{tk_prop: val})
+                self.widget.after(interval, lambda: _step(i + 1))
+            
+            _step(1)
+        except:
+            pass
+        return None
+
 class GxObject:
     """The gx built-in object, always available in Grynk."""
 
@@ -233,11 +298,11 @@ class GxObject:
 
     # ── GUI ───────────────────────────────────────────────────────────────────
 
-    def window(self, title="Grynk App", width=400, height=300):
+    def window(self, title="Grynk App", width=400, height=300, theme="blue"):
         ctk = _try_import('customtkinter')
         if ctk:
             ctk.set_appearance_mode("dark")
-            ctk.set_default_color_theme("blue")
+            ctk.set_default_color_theme(unwrap(theme))
             root = ctk.CTk()
         else:
             import tkinter as tk
@@ -248,20 +313,28 @@ class GxObject:
         self._gui = GxGUI(root)
         return self._gui
 
-    def button(self, text, callback):
+    def theme(self, name):
+        ctk = _try_import('customtkinter')
+        if ctk:
+            ctk.set_default_color_theme(unwrap(name))
+            if self._gui:
+                print("Theme changed. Restart app to see full effect.")
+        return None
+
+    def button(self, text, callback, row=None, style=None):
         if not self._gui:
             raise GrynkRuntimeError("gx.button requires an active window (call gx.window first)")
-        return self._gui.add_button(text, callback)
+        return self._gui.add_button(text, callback, row=row, style=style)
 
-    def label(self, text):
+    def label(self, text, row=None, style=None):
         if not self._gui:
             raise GrynkRuntimeError("gx.label requires an active window")
-        return self._gui.add_label(text)
+        return self._gui.add_label(text, row=row, style=style)
 
-    def entry(self, placeholder=""):
+    def entry(self, placeholder="", row=None, style=None):
         if not self._gui:
             raise GrynkRuntimeError("gx.entry requires an active window")
-        return self._gui.add_entry(placeholder)
+        return self._gui.add_entry(placeholder, row=row, style=style)
 
     def gui_run(self):
         if not self._gui:
