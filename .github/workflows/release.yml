@@ -35,6 +35,10 @@ jobs:
     - name: Build with PyInstaller
       run: python build.py
 
+    - name: Build Windows Installer
+      if: matrix.os == 'windows-latest'
+      run: iscc installer.iss
+
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
@@ -42,6 +46,7 @@ jobs:
         path: |
           dist/grynk
           dist/grynk.exe
+          dist/Grynk_Windows_Installer.exe
 
   release:
     name: Create Release
@@ -59,6 +64,7 @@ jobs:
       with:
         files: |
           grynk-windows-latest/grynk.exe
+          grynk-windows-latest/Grynk_Windows_Installer.exe
           grynk-ubuntu-latest/grynk
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
