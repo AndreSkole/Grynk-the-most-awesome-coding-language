@@ -1,0 +1,18 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Build and release directories
+build/
+dist/
+*.spec
+
+# VS Code config
+.vscode/
+.vs/
+
+# macOS / OS files
+.DS_Store
+Thumbs.db

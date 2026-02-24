@@ -1,0 +1,13 @@
+{
+    "iconDefinitions": {
+        "grynk": {
+            "iconPath": "./grynk-icon.png"
+        }
+    },
+    "fileExtensions": {
+        "grk": "grynk"
+    },
+    "languageIds": {
+        "grynk": "grynk"
+    }
+}

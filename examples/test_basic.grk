@@ -1,0 +1,94 @@
+# test_basic.grk — non-interactive test of core features
+
+gx.banner("Grynk Tests", "green")
+
+# Variables & string interpolation
+let x = 42
+let greeting = "Value is {x}"
+say greeting
+
+# Arithmetic
+say 2 ** 10
+say 10 % 3
+
+# If / elif / else
+if x > 40 {
+    say "x is big"
+} elif x == 42 {
+    say "x is 42"
+} else {
+    say "x is small"
+}
+
+# Function + recursion
+fn factorial(n) {
+    if n <= 1 { return 1 }
+    return n * factorial(n - 1)
+}
+say factorial(10)
+
+# Loop N times
+mut count = 0
+loop 5 times {
+    count += 1
+}
+say "count is {count}"
+
+# For loop
+let total = 0
+for i in [1, 2, 3, 4, 5] {
+    total += i
+}
+say "total is {total}"
+
+# While loop
+mut n = 10
+while n > 5 {
+    n -= 2
+}
+say "n is {n}"
+
+# List methods
+let nums = gx.range(1, 11)
+fn is_even(n) { return n % 2 == 0 }
+say nums.filter(is_even).sum()
+
+# String methods
+let s = "  Hello, Grynk!  "
+say s.trim().upper()
+
+# Dict methods
+let d = {"name": "grynk", "version": 1}
+say d.get("name")
+say d.has("version")
+
+# Pipe operator
+let result = [3,1,4,1,5,9] |> gx.sort() |> gx.unique()
+say result
+
+# try/catch
+try {
+    throw "test error"
+} catch(e) {
+    say "Caught: {e}"
+}
+
+# match/case
+let val = 2
+match val {
+    case 1 { say "one" }
+    case 2 { say "two" }
+    case _ { say "other" }
+}
+
+# gx math
+say gx.sqrt(144)
+say gx.avg([1, 2, 3, 4, 5])
+say gx.clamp(150, 0, 100)
+
+# gx type tools
+say gx.type_of(42)
+say gx.type_of("hello")
+say gx.type_of([1,2,3])
+
+say "All tests passed!"

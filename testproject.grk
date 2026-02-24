@@ -1,0 +1,22 @@
+# testproject.grk — Created with Grynk v1.0.0
+# Powerful. Fast. Alive.
+
+gx.banner("testproject", "cyan")
+
+let author = ask("Your name? ")
+say "Welcome, {{author}}! Let\'s build something great."
+
+fn greet(who, times = 1) {{
+    loop times times {{
+        say "Hello, {{who}}!"
+    }}
+}}
+
+greet(author, 3)
+
+let nums = gx.range(1, 11)
+fn is_even(n) {{ return n % 2 == 0 }}
+say "Sum of evens 1–10: {{nums.filter(is_even).sum()}}"
+
+let resp = gx.get("https://httpbin.org/get")
+say "Status: {{resp.status}}"

@@ -1,0 +1,23 @@
+# spec_demo_noask.grk — spec example without interactive ask()
+
+fn factorial(n) {
+    if n <= 1 { return 1 }
+    return n * factorial(n - 1)
+}
+
+let name = "Grynk User"
+let id = gx.uuid()
+
+gx.banner("GRYNK", "cyan")
+say "Welcome {name} — your ID is {id}"
+say factorial(10)
+
+let resp = gx.get("https://jsonplaceholder.typicode.com/posts/1")
+say resp.json.get("title")
+
+let nums = gx.range(1, 11)
+fn is_even(n) { return n % 2 == 0 }
+say nums.filter(is_even).sum()
+
+let result = [3,1,4,1,5,9] |> gx.sort() |> gx.unique()
+say result
