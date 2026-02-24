@@ -120,8 +120,133 @@ def _ai_code(description, language='python'):
 
 # ── gx class ──────────────────────────────────────────────────────────────────
 
+# Singleton state
+_GX_INSTANCE = None
+
+# ── GxGUI wrapper ─────────────────────────────────────────────────────────────
+
+class GxGUI:
+    def __init__(self, root):
+        self.root = root
+        self.widgets = []
+        self._ctk = _try_import('customtkinter')
+
+    def add_button(self, text, callback):
+        if self._ctk:
+            btn = self._ctk.CTkButton(self.root, text=unwrap(text), command=lambda: self._trigger(callback))
+        else:
+            import tkinter as tk
+            btn = tk.Button(self.root, text=unwrap(text), command=lambda: self._trigger(callback))
+        btn.pack(pady=10, padx=20)
+        self.widgets.append(btn)
+        return btn
+
+    def add_label(self, text):
+        if self._ctk:
+            lbl = self._ctk.CTkLabel(self.root, text=unwrap(text))
+        else:
+            import tkinter as tk
+            lbl = tk.Label(self.root, text=unwrap(text))
+        lbl.pack(pady=5, padx=20)
+        self.widgets.append(lbl)
+        return GxGUIWidget(lbl)
+
+    def add_entry(self, placeholder=""):
+        if self._ctk:
+            entry = self._ctk.CTkEntry(self.root, placeholder_text=unwrap(placeholder))
+        else:
+            import tkinter as tk
+            entry = tk.Entry(self.root)
+        entry.pack(pady=5, padx=20)
+        self.widgets.append(entry)
+        return GxGUIWidget(entry)
+
+    def run(self):
+        self.root.mainloop()
+
+    def _trigger(self, fn):
+        from .types import _call_fn
+        try:
+            _call_fn(fn, [])
+        except Exception as e:
+            print(f"GUI Callback Error: {e}")
+
+class GxGUIWidget:
+    def __init__(self, widget):
+        self.widget = widget
+    
+    def get_attr(self, name):
+        if name == "text":
+            if hasattr(self.widget, 'get'): return GrynkString(self.widget.get())
+            if hasattr(self.widget, 'cget'): return GrynkString(self.widget.cget("text"))
+            return GrynkString("")
+        
+        methods = {
+            "set": self._set_text,
+            "clear": self._clear,
+            "focus": lambda: (self.widget.focus(), None)[1]
+        }
+        if name in methods: return methods[name]
+        raise GrynkRuntimeError(f"Widget has no attribute '{name}'")
+
+    def _set_text(self, text):
+        t = unwrap(text)
+        if hasattr(self.widget, 'configure'):
+            if 'text' in self.widget.keys():
+                self.widget.configure(text=t)
+            elif 'placeholder_text' in self.widget.keys():
+                self.widget.configure(placeholder_text=t)
+        return None
+
+    def _clear(self):
+        if hasattr(self.widget, 'delete'):
+            self.widget.delete(0, 'end')
+        return None
+
 class GxObject:
     """The gx built-in object, always available in Grynk."""
+
+    def __init__(self):
+        self._gui = None
+        global _GX_INSTANCE
+        _GX_INSTANCE = self
+
+    # ── GUI ───────────────────────────────────────────────────────────────────
+
+    def window(self, title="Grynk App", width=400, height=300):
+        ctk = _try_import('customtkinter')
+        if ctk:
+            ctk.set_appearance_mode("dark")
+            ctk.set_default_color_theme("blue")
+            root = ctk.CTk()
+        else:
+            import tkinter as tk
+            root = tk.Tk()
+        
+        root.title(unwrap(title))
+        root.geometry(f"{int(unwrap(width))}x{int(unwrap(height))}")
+        self._gui = GxGUI(root)
+        return self._gui
+
+    def button(self, text, callback):
+        if not self._gui:
+            raise GrynkRuntimeError("gx.button requires an active window (call gx.window first)")
+        return self._gui.add_button(text, callback)
+
+    def label(self, text):
+        if not self._gui:
+            raise GrynkRuntimeError("gx.label requires an active window")
+        return self._gui.add_label(text)
+
+    def entry(self, placeholder=""):
+        if not self._gui:
+            raise GrynkRuntimeError("gx.entry requires an active window")
+        return self._gui.add_entry(placeholder)
+
+    def gui_run(self):
+        if not self._gui:
+            raise GrynkRuntimeError("gx.gui_run requires an active window")
+        self._gui.run()
 
     # ── Randomness ────────────────────────────────────────────────────────────
 

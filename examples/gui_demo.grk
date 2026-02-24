@@ -1,0 +1,30 @@
+# Grynk GUI Demo 🖼️
+gx.banner("GUI DEMO", "magenta")
+
+# 1. Create a modern window
+let win = gx.window("Grynk Pro App", 400, 300)
+
+# 2. Add some status labels
+let lbl = gx.label("Welcome to Grynk GUI!")
+let count = 0
+
+# 3. Create interactive functions
+fn on_click() {
+    mut count = count + 1
+    lbl.set("Button clicked {count} times! 🚀")
+    say "Log: Clicked {count}"
+}
+
+# 4. Add interactive widgets
+gx.button("Click Me!", on_click)
+
+let input = gx.entry("Type something...")
+gx.button("Print Input", fn() {
+    let val = input.text
+    say "User typed: {val}"
+    lbl.set("You typed: {val}")
+})
+
+# 5. Start the app!
+gx.banner("Window Opened!", "green")
+gx.gui_run()
