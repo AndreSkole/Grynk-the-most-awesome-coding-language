@@ -18,13 +18,29 @@ The installer will automatically set up the CLI tool and seamlessly install the 
 4. **Done!** Open any terminal and run your code.
 
 ### Linux & macOS
-To install Grynk from source on Linux or macOS:
-1. Clone the repository.
-2. Run the setup script:
+
+You have two ways to install Grynk on Linux:
+
+#### Option 1: Standalone Binary (Easiest)
+1. Go to the [Releases](../../releases) page and download the `grynk` file (the one without an extension).
+2. Open your terminal and make the file executable:
+   ```bash
+   chmod +x grynk
+   ```
+3. Move it to your local bin folder to run it from anywhere:
+   ```bash
+   sudo mv grynk /usr/local/bin/
+   ```
+
+#### Option 2: Install from Source
+If you have Python 3 installed and want to run Grynk natively:
+1. Clone this repository to your machine.
+2. Run the provided setup script:
    ```bash
    chmod +x setup.sh
    ./setup.sh
    ```
+   *This script automatically installs dependencies and creates a global `grynk` command for you.*
 
 ---
 
