@@ -40,6 +40,10 @@ def main():
         '--onefile',
         '--name', 'grynk',
         '--add-data', f'grynk_core{os.pathsep}grynk_core',
+        '--hidden-import', 'requests',
+        '--hidden-import', 'bs4',
+        '--hidden-import', 'colorama',
+        '--hidden-import', 'openai',
         'grynk.py',
     ]
 
@@ -53,7 +57,7 @@ def main():
         exe = os.path.join('dist', 'grynk.exe' if sys.platform == 'win32' else 'grynk')
         print()
         print("=" * 50)
-        print(f"  ✔ Build successful!")
+        print(f"  [OK] Build successful!")
         print(f"  Executable: {os.path.abspath(exe)}")
         print()
         print("  To install globally, copy to a directory in PATH:")
