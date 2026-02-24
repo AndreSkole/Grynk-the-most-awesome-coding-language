@@ -164,29 +164,35 @@ class GxObject:
         except Exception as e:
             raise GrynkRuntimeError(f"gx.fetch failed: {e}")
 
-    def get(self, url, params=None):
+    def get(self, url, params=None, headers=None):
         requests = _try_import('requests')
         if requests is None:
             raise GrynkRuntimeError("gx.get requires 'requests' (pip install requests)")
         try:
             p = unwrap(params) if params is not None else None
-            r = requests.get(unwrap(url), params=p, timeout=15)
+            h = unwrap(headers) if headers is not None else None
+            r = requests.get(unwrap(url), params=p, headers=h, timeout=15)
             return _build_response(r)
         except Exception as e:
             raise GrynkRuntimeError(f"gx.get failed: {e}")
 
-    def post(self, url, body=None):
+    def post(self, url, body=None, headers=None):
         requests = _try_import('requests')
         if requests is None:
             raise GrynkRuntimeError("gx.post requires 'requests' (pip install requests)")
         try:
             b = unwrap(body) if body is not None else None
-            headers = {}
+            h = unwrap(headers) if headers is not None else {}
+            
+            # Ensure all keys and values in headers are unwrapped strings
+            clean_headers = {str(k): str(v) for k, v in h.items()}
+            
             if isinstance(b, dict):
-                headers = {'Content-Type': 'application/json'}
-                r = requests.post(unwrap(url), json=b, headers=headers, timeout=15)
+                if 'Content-Type' not in clean_headers:
+                    clean_headers['Content-Type'] = 'application/json'
+                r = requests.post(unwrap(url), json=b, headers=clean_headers, timeout=15)
             else:
-                r = requests.post(unwrap(url), data=b, timeout=15)
+                r = requests.post(unwrap(url), data=b, headers=clean_headers, timeout=15)
             return _build_response(r)
         except Exception as e:
             raise GrynkRuntimeError(f"gx.post failed: {e}")

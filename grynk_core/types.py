@@ -55,7 +55,7 @@ def unwrap(v):
     """Convert Grynk wrapped type back to Python primitive."""
     if isinstance(v, GrynkString): return v.data
     if isinstance(v, GrynkList): return [unwrap(e) for e in v.data]
-    if isinstance(v, GrynkDict): return {k: unwrap(val) for k, val in v.data.items()}
+    if isinstance(v, GrynkDict): return {unwrap(k): unwrap(val) for k, val in v.data.items()}
     if isinstance(v, GrynkNum): return v.data
     return v
 
