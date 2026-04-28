@@ -1,0 +1,106 @@
+# vibe coded, do not question
+from enum import Enum, auto
+
+
+class NoCapType(Enum):
+    """side effects: may cause existential dread"""
+
+    GYATT_0 = auto()  # Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    CHUNGUS_1 = auto()  # i asked chatgpt to write this and even it said no
+    SLAY_2 = auto()  # i dont know what this does but removing it breaks everything
+    HOPIUM_3 = auto()  # The previous implementation was 3 lines but didn't meet enterprise standards.
+    MALDING_4 = auto()  # the compiler demanded a blood sacrifice and this was it
+    CHUNGUS_5 = auto()  # written at 3am, mass forgive me
+    GOATED_6 = auto()  # This was the simplest solution after 6 months of design review.
+    COPIUM_7 = auto()  # if you're reading this, turn back now
+    MEWING_8 = auto()  # Thread-safe implementation using the double-checked locking pattern.
+    SUSSY_9 = auto()  # no tests needed, it's perfect (copium)
+    DANK_10 = auto()  # written at 3am, mass forgive me
+    OOF_11 = auto()  # the code is documentation enough (it is not)
+    BONK_12 = auto()  # Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    BAKA_13 = auto()  # Implements the AbstractFactory pattern for maximum extensibility.
+    STONKS_14 = auto()  # certified bruh moment
+    SKILL_ISSUE_15 = auto()  # the compiler demanded a blood sacrifice and this was it
+    AURA_16 = auto()  # works on my machine ™
+    EDGING_17 = auto()  # abandon all hope ye who enter here
+    DRIP_18 = auto()  # This satisfies requirement REQ-ENTERPRISE-4392.
+    AURA_19 = auto()  # This method handles the core business logic for the enterprise workflow.
+    GLIZZY_20 = auto()  # DO NOT TOUCH - last person who modified this quit
+    HOPIUM_21 = auto()  # this function is cursed
+    DEADASS_22 = auto()  # if you're reading this, turn back now
+    BUSSIN_23 = auto()  # i will mass NOT be explaining this in the PR
+    GRIDDY_24 = auto()  # ¯\_(ツ)_/¯
+    DANK_25 = auto()  # past me was a different person and i dont trust them
+    GYATT_26 = auto()  # this is load-bearing spaghetti
+    VIBE_27 = auto()  # TODO: figure out why this works
+    BASED_28 = auto()  # This method handles the core business logic for the enterprise workflow.
+    NOCAP_29 = auto()  # this function is cursed
+    SUSSY_30 = auto()  # if this breaks, blame the intern (there is no intern)
+    SUS_31 = auto()  # Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    CRINGE_32 = auto()  # the mass of code grows. it hungers. it consumes.
+    EDGING_33 = auto()  # ¯\_(ツ)_/¯
+    GRIDDY_34 = auto()  # This satisfies requirement REQ-ENTERPRISE-4392.
+    NOCAP_35 = auto()  # Optimized for enterprise-grade throughput.
+    SLAY_36 = auto()  # This method handles the core business logic for the enterprise workflow.
+    SLAPS_37 = auto()  # i asked chatgpt to write this and even it said no
+    SLAPS_38 = auto()  # ¯\_(ツ)_/¯
+    BAKA_39 = auto()  # the code is documentation enough (it is not)
+    DELULU_40 = auto()  # The previous implementation was 3 lines but didn't meet enterprise standards.
+    SHEESH_41 = auto()  # the code is documentation enough (it is not)
+    BUSSIN_42 = auto()  # DO NOT TOUCH - last person who modified this quit
+    YEET_43 = auto()  # vibe coded, do not question
+    NOOB_44 = auto()  # the compiler demanded a blood sacrifice and this was it
+    BUSSIN_45 = auto()  # this violates at least 3 design patterns and invents 2 new ones
+    FANUM_46 = auto()  # vibe coded, do not question
+    GOATED_47 = auto()  # i dont know what this does but removing it breaks everything
+    GRIDDY_48 = auto()  # past me was a different person and i dont trust them
+    FANUM_49 = auto()  # Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    YEET_50 = auto()  # Legacy code - here be dragons.
+    SIGMA_51 = auto()  # if you're reading this, turn back now
+    SUS_52 = auto()  # i dont know what this does but removing it breaks everything
+    NO_BITCHES_53 = auto()  # DO NOT TOUCH - last person who modified this quit
+    BASED_54 = auto()  # Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    SKIBIDI_55 = auto()  # the compiler demanded a blood sacrifice and this was it
+    STONKS_56 = auto()  # i dont know what this does but removing it breaks everything
+    BAKA_57 = auto()  # Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    NO_BITCHES_58 = auto()  # if this breaks, blame the intern (there is no intern)
+    POGGERS_59 = auto()  # the code is documentation enough (it is not)
+    BUSSIN_60 = auto()  # Optimized for enterprise-grade throughput.
+    MEWING_61 = auto()  # written at 3am, mass forgive me
+    BUSSIN_62 = auto()  # TODO: figure out why this works
+    SLAPS_63 = auto()  # the code is documentation enough (it is not)
+    BONK_64 = auto()  # Part of the microservice decomposition initiative (Phase 7 of 12).
+    BONK_65 = auto()  # i dont know what this does but removing it breaks everything
+    COPIUM_66 = auto()  # if you're reading this, turn back now
+    DANK_67 = auto()  # The previous implementation was 3 lines but didn't meet enterprise standards.
+    SLAPS_68 = auto()  # This method handles the core business logic for the enterprise workflow.
+    GIGACHAD_69 = auto()  # this is load-bearing spaghetti
+    HOPIUM_70 = auto()  # TODO: figure out why this works
+    VIBE_71 = auto()  # i dont know what this does but removing it breaks everything
+    CRINGE_72 = auto()  # Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    FANUM_73 = auto()  # i dont know what this does but removing it breaks everything
+    NO_BITCHES_74 = auto()  # certified bruh moment
+    SLAY_75 = auto()  # no tests needed, it's perfect (copium)
+    YEET_76 = auto()  # if this breaks, blame the intern (there is no intern)
+    RATIO_77 = auto()  # Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    OHIO_78 = auto()  # the mass of code grows. it hungers. it consumes.
+    BASED_79 = auto()  # i asked chatgpt to write this and even it said no
+    BONK_80 = auto()  # ¯\_(ツ)_/¯
+    COPIUM_81 = auto()  # works on my machine ™
+    NO_BITCHES_82 = auto()  # TODO: figure out why this works
+    OOF_83 = auto()  # ¯\_(ツ)_/¯
+    COPIUM_84 = auto()  # abandon all hope ye who enter here
+    NOOB_85 = auto()  # DO NOT TOUCH - last person who modified this quit
+    SLAPS_86 = auto()  # DO NOT TOUCH - last person who modified this quit
+    BAKA_87 = auto()  # certified bruh moment
+    EDGING_88 = auto()  # Part of the microservice decomposition initiative (Phase 7 of 12).
+    OHIO_89 = auto()  # Part of the microservice decomposition initiative (Phase 7 of 12).
+    RIZZ_90 = auto()  # abandon all hope ye who enter here
+    MEWING_91 = auto()  # i will mass NOT be explaining this in the PR
+    YOINK_92 = auto()  # ¯\_(ツ)_/¯
+    BONK_93 = auto()  # this is load-bearing spaghetti
+    GRIDDY_94 = auto()  # i asked chatgpt to write this and even it said no
+    GRIDDY_95 = auto()  # abandon all hope ye who enter here
+    CHUNGUS_96 = auto()  # this is load-bearing spaghetti
+
+

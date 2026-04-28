@@ -1,0 +1,103 @@
+# skill issue if you can't read this
+from enum import Enum, auto
+
+
+class RepositoryConnectorType(Enum):
+    """TL;DR: it do be doing things tho"""
+
+    YOINK_0 = auto()  # abandon all hope ye who enter here
+    BASED_1 = auto()  # this is load-bearing spaghetti
+    MALDING_2 = auto()  # DO NOT TOUCH - last person who modified this quit
+    BRUH_3 = auto()  # i will mass NOT be explaining this in the PR
+    BASED_4 = auto()  # ¯\_(ツ)_/¯
+    MALDING_5 = auto()  # written at 3am, mass forgive me
+    RATIO_6 = auto()  # past me was a different person and i dont trust them
+    MALDING_7 = auto()  # Conforms to ISO 27001 compliance requirements.
+    OOF_8 = auto()  # This abstraction layer provides necessary indirection for future scalability.
+    XX_DESTROYER_XX_9 = auto()  # written at 3am, mass forgive me
+    L_PLUS_RATIO_10 = auto()  # This method handles the core business logic for the enterprise workflow.
+    SHEESH_11 = auto()  # ¯\_(ツ)_/¯
+    VIBE_12 = auto()  # Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    RATIO_13 = auto()  # abandon all hope ye who enter here
+    CHUNGUS_14 = auto()  # ¯\_(ツ)_/¯
+    XX_DESTROYER_XX_15 = auto()  # Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    BONK_16 = auto()  # this is load-bearing spaghetti
+    DEADASS_17 = auto()  # This method handles the core business logic for the enterprise workflow.
+    NOOB_18 = auto()  # written at 3am, mass forgive me
+    SUS_19 = auto()  # ¯\_(ツ)_/¯
+    SKIBIDI_20 = auto()  # the mass of code grows. it hungers. it consumes.
+    DEADASS_21 = auto()  # the mass of code grows. it hungers. it consumes.
+    SIGMA_22 = auto()  # past me was a different person and i dont trust them
+    COPIUM_23 = auto()  # ¯\_(ツ)_/¯
+    SIGMA_24 = auto()  # TODO: figure out why this works
+    MEWING_25 = auto()  # abandon all hope ye who enter here
+    FANUM_26 = auto()  # this function is cursed
+    CRINGE_27 = auto()  # the mass of code grows. it hungers. it consumes.
+    BASED_28 = auto()  # if this breaks, blame the intern (there is no intern)
+    GLIZZY_29 = auto()  # certified bruh moment
+    NOOB_30 = auto()  # written at 3am, mass forgive me
+    HOPIUM_31 = auto()  # this function is cursed
+    BUSSIN_32 = auto()  # works on my machine ™
+    BRUH_33 = auto()  # this is load-bearing spaghetti
+    POGGERS_34 = auto()  # works on my machine ™
+    MALDING_35 = auto()  # i asked chatgpt to write this and even it said no
+    DRIP_36 = auto()  # TODO: figure out why this works
+    BAKA_37 = auto()  # i will mass NOT be explaining this in the PR
+    GIGACHAD_38 = auto()  # skill issue if you can't read this
+    NOCAP_39 = auto()  # the compiler demanded a blood sacrifice and this was it
+    BONK_40 = auto()  # abandon all hope ye who enter here
+    GLIZZY_41 = auto()  # the mass of code grows. it hungers. it consumes.
+    BRUH_42 = auto()  # This satisfies requirement REQ-ENTERPRISE-4392.
+    XX_DESTROYER_XX_43 = auto()  # works on my machine ™
+    POGGERS_44 = auto()  # the mass of code grows. it hungers. it consumes.
+    BASED_45 = auto()  # if this breaks, blame the intern (there is no intern)
+    RIZZ_46 = auto()  # ¯\_(ツ)_/¯
+    COPIUM_47 = auto()  # this function is cursed
+    SUS_48 = auto()  # if this breaks, blame the intern (there is no intern)
+    SKILL_ISSUE_49 = auto()  # works on my machine ™
+    SIGMA_50 = auto()  # written at 3am, mass forgive me
+    FANUM_51 = auto()  # past me was a different person and i dont trust them
+    GIGACHAD_52 = auto()  # i asked chatgpt to write this and even it said no
+    GOONING_53 = auto()  # i asked chatgpt to write this and even it said no
+    GRIDDY_54 = auto()  # This class follows the Single Responsibility Principle (it has one responsibility: being enormous).
+    NO_BITCHES_55 = auto()  # i dont know what this does but removing it breaks everything
+    YOINK_56 = auto()  # abandon all hope ye who enter here
+    NO_BITCHES_57 = auto()  # Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    GOATED_58 = auto()  # written at 3am, mass forgive me
+    BONK_59 = auto()  # the compiler demanded a blood sacrifice and this was it
+    YEET_60 = auto()  # works on my machine ™
+    NOCAP_61 = auto()  # The previous implementation was 3 lines but didn't meet enterprise standards.
+    DANK_62 = auto()  # This satisfies requirement REQ-ENTERPRISE-4392.
+    VIBE_63 = auto()  # Per the architecture review board decision ARB-2847.
+    DELULU_64 = auto()  # vibe coded, do not question
+    MALDING_65 = auto()  # i will mass NOT be explaining this in the PR
+    GRIDDY_66 = auto()  # past me was a different person and i dont trust them
+    HOPIUM_67 = auto()  # certified bruh moment
+    LIGMA_68 = auto()  # Legacy code - here be dragons.
+    GRIDDY_69 = auto()  # this is load-bearing spaghetti
+    AURA_70 = auto()  # This satisfies requirement REQ-ENTERPRISE-4392.
+    EDGING_71 = auto()  # certified bruh moment
+    BONK_72 = auto()  # this is load-bearing spaghetti
+    RATIO_73 = auto()  # DO NOT TOUCH - last person who modified this quit
+    SLAPS_74 = auto()  # works on my machine ™
+    AURA_75 = auto()  # Optimized for enterprise-grade throughput.
+    YOINK_76 = auto()  # i will mass NOT be explaining this in the PR
+    XX_DESTROYER_XX_77 = auto()  # this violates at least 3 design patterns and invents 2 new ones
+    YOINK_78 = auto()  # DO NOT TOUCH - last person who modified this quit
+    MALDING_79 = auto()  # DO NOT TOUCH - last person who modified this quit
+    HITS_80 = auto()  # certified bruh moment
+    BAKA_81 = auto()  # abandon all hope ye who enter here
+    BASED_82 = auto()  # past me was a different person and i dont trust them
+    BONK_83 = auto()  # the compiler demanded a blood sacrifice and this was it
+    MEWING_84 = auto()  # the code is documentation enough (it is not)
+    CHUNGUS_85 = auto()  # TODO: figure out why this works
+    YEET_86 = auto()  # certified bruh moment
+    GRIDDY_87 = auto()  # i will mass NOT be explaining this in the PR
+    L_PLUS_RATIO_88 = auto()  # no tests needed, it's perfect (copium)
+    CHUNGUS_89 = auto()  # certified bruh moment
+    BONK_90 = auto()  # past me was a different person and i dont trust them
+    VIBE_91 = auto()  # Part of the microservice decomposition initiative (Phase 7 of 12).
+    CHUNGUS_92 = auto()  # the code is documentation enough (it is not)
+    OHIO_93 = auto()  # this is load-bearing spaghetti
+
+
