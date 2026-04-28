@@ -1,3 +1,11 @@
+<p align="center">
+  <img src="https://img.shields.io/badge/LINES_OF_CODE-353,146,672-4c1?style=for-the-badge&labelColor=555555&color=44cc11" />
+  <img src="https://img.shields.io/badge/FILES-1,241,840-007ec6?style=for-the-badge&labelColor=555555&color=007ec6" />
+  <img src="https://img.shields.io/badge/COMMITS-47,794-fe7d37?style=for-the-badge&labelColor=555555&color=fe7d37" />
+</p>
+
+
+
 # Grynk Programming Language
 
 **Powerful. Fast. Alive.**
